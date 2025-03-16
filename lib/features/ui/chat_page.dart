@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 
-
 class ChatsPage extends StatefulWidget {
   const ChatsPage({super.key});
-
-
 
   @override
   State<ChatsPage> createState() => _ChatsPageState();
@@ -12,16 +9,16 @@ class ChatsPage extends StatefulWidget {
 
 class _ChatsPageState extends State<ChatsPage> {
   final _messageController = TextEditingController();
-  String? _editingMessageId;
   bool _isEditing = false;
   bool isMe = true;
+  List<String> messages = ["Hello!", "How are you?", "I'm fine, thanks!"];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
-        title: Text("Nishi"),
+        title: const Text("Nishi"),
         backgroundColor: Colors.amber,
       ),
       body: Column(
@@ -29,24 +26,33 @@ class _ChatsPageState extends State<ChatsPage> {
           Expanded(
             child: ListView.builder(
               reverse: true,
-              itemCount: 3,
+              itemCount: messages.length,
               itemBuilder: (context, index) {
-                return Column(
-                  crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-                      child: Row(
-                        mainAxisAlignment: isMe ? MainAxisAlignment.end : MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            isMe ? "You" : "Nishi",
-                            style: TextStyle(fontSize: 10, color: Colors.grey[600]),
-                          ),
-                        ],
-                      ),
+                bool isMine = index % 2 == 0;
+                return Align(
+                  alignment: isMine ? Alignment.centerRight : Alignment.centerLeft,
+                  child: Container(
+                    margin: const EdgeInsets.symmetric(vertical: 4, horizontal: 12),
+                    padding: const EdgeInsets.all(12),
+                    decoration: BoxDecoration(
+                      color: isMine ? Colors.amber[200] : Colors.grey[300],
+                      borderRadius: BorderRadius.circular(16),
                     ),
-                  ],
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          isMine ? "You" : "Nishi",
+                          style: TextStyle(fontSize: 12, color: Colors.grey[600]),
+                        ),
+                        const SizedBox(height: 4),
+                        Text(
+                          messages[index],
+                          style: const TextStyle(fontSize: 16),
+                        ),
+                      ],
+                    ),
+                  ),
                 );
               },
             ),
@@ -76,24 +82,17 @@ class _ChatsPageState extends State<ChatsPage> {
             const SizedBox(width: 8),
             IconButton(
               icon: const Icon(Icons.send, color: Colors.amber),
-              onPressed: () {},
+              onPressed: () {
+                if (_messageController.text.isNotEmpty) {
+                  setState(() {
+                    messages.insert(0, _messageController.text);
+                    _messageController.clear();
+                  });
+                }
+              },
             ),
           ],
         ),
-      ),
-    );
-  }
-
-  Widget _buildDropdownMenu(String messageId, String messageText) {
-    return PopupMenuButton<String>(
-      onSelected: (value) {},
-      itemBuilder: (context) => [
-        const PopupMenuItem(value: 'Edit', child: Text('Edit')),
-        const PopupMenuItem(value: 'Delete', child: Text('Delete')),
-      ],
-      child: const Padding(
-        padding: EdgeInsets.only(left: 6),
-        child: Icon(Icons.more_vert, size: 18, color: Colors.black54),
       ),
     );
   }

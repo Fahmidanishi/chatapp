@@ -34,9 +34,9 @@ class _HomePageState extends State<HomePage> {
                     fontWeight: FontWeight.bold,
                     color: Colors.black),
               ),
-              accountEmail: Text(
+              accountEmail: const Text(
                 "abc@gmail.com",
-                style: const TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.black),
               ),
               currentAccountPicture: CircleAvatar(
                 backgroundColor: Colors.grey.shade300,
@@ -64,23 +64,25 @@ class _HomePageState extends State<HomePage> {
       body: Column(
         //crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           SizedBox(
               height: 90,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 8),
+                  return  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Column(
                       children: [
                         CircleAvatar(
-                          radius: 32,
-                          backgroundImage: NetworkImage(''),
+                            radius: 24,
+                            backgroundImage:const NetworkImage(''),
+                            backgroundColor: Colors.grey.shade300,
+                            child:const Icon(Icons.person,color: Colors.grey,size: 40,)
                         ),
-                        SizedBox(height: 4),
-                        Text(
+                        const SizedBox(height: 4),
+                        const Text(
                           'Unknown',
                           style: TextStyle(fontSize: 12),
                         )
@@ -99,16 +101,17 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) {
                 // var userData = users[index].data() as Map<String, dynamic>;
                 return ListTile(
-                  leading: const CircleAvatar(
+                  leading:  CircleAvatar(
                       radius: 24,
-                      backgroundImage:NetworkImage(''),
-                      child:Icon(Icons.person)
+                      backgroundImage:const NetworkImage(''),
+                      backgroundColor: Colors.grey.shade300,
+                      child:const Icon(Icons.person,color: Colors.grey,size: 40,)
                   ),
                   title: const Text('Unknown',
                     style: TextStyle(fontWeight: FontWeight.w600),
                   ),
                   onTap: () {
-                    customNavigator(context, ChatsPage());
+                    customNavigator(context, const ChatsPage());
                     // Navigate to chat screen
                   },
                 );
