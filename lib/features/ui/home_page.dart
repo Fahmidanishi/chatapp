@@ -48,16 +48,6 @@ class _HomePageState extends State<HomePage> {
               title: const Text('Chats'),
               onTap: () => Navigator.pop(context),
             ),
-            ListTile(
-              leading: const Icon(Icons.logout),
-              title: const Text('Logout'),
-              onTap: () {
-
-                if (mounted) {
-                  customNavigator(context, const LoginPage());
-                }
-              },
-            ),
           ],
         ),
       ),
@@ -66,33 +56,36 @@ class _HomePageState extends State<HomePage> {
         children: [
           const SizedBox(height: 24),
           SizedBox(
-              height: 90,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Column(
-                      children: [
-                        CircleAvatar(
-                            radius: 24,
-                            backgroundImage:const NetworkImage(''),
-                            backgroundColor: Colors.grey.shade300,
-                            child:const Icon(Icons.person,color: Colors.grey,size: 40,)
-                        ),
-                        const SizedBox(height: 4),
-                        const Text(
-                          'Unknown',
-                          style: TextStyle(fontSize: 12),
-                        )
-                      ],
-                    ),
-                  );
-                },
-              ),
+            height: 90,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Column(
+                    children: [
+                      CircleAvatar(
+                          radius: 24,
+                          backgroundImage: const NetworkImage(''),
+                          backgroundColor: Colors.grey.shade300,
+                          child: const Icon(
+                            Icons.person,
+                            color: Colors.grey,
+                            size: 40,
+                          )),
+                      const SizedBox(height: 4),
+                      const Text(
+                        'Unknown',
+                        style: TextStyle(fontSize: 12),
+                      )
+                    ],
+                  ),
+                );
+              },
+            ),
           ),
-          Divider(color: Colors.grey.withOpacity(0.2),thickness: 8),
+          Divider(color: Colors.grey.withOpacity(0.2), thickness: 8),
 
           //ALL user list
           Expanded(
@@ -101,13 +94,17 @@ class _HomePageState extends State<HomePage> {
               itemBuilder: (context, index) {
                 // var userData = users[index].data() as Map<String, dynamic>;
                 return ListTile(
-                  leading:  CircleAvatar(
+                  leading: CircleAvatar(
                       radius: 24,
-                      backgroundImage:const NetworkImage(''),
+                      backgroundImage: const NetworkImage(''),
                       backgroundColor: Colors.grey.shade300,
-                      child:const Icon(Icons.person,color: Colors.grey,size: 40,)
-                  ),
-                  title: const Text('Unknown',
+                      child: const Icon(
+                        Icons.person,
+                        color: Colors.grey,
+                        size: 40,
+                      )),
+                  title: const Text(
+                    'Unknown',
                     style: TextStyle(fontWeight: FontWeight.w600),
                   ),
                   onTap: () {
@@ -121,7 +118,6 @@ class _HomePageState extends State<HomePage> {
                 child: Divider(color: Colors.grey.withOpacity(0.2)),
               ),
             ),
-           
           ),
         ],
       ),

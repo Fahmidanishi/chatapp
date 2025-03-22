@@ -2,6 +2,7 @@ import 'package:chatapp/common/constrants.dart';
 import 'package:chatapp/common/custom_navigator.dart';
 import 'package:chatapp/features/auth/signup_page.dart';
 import 'package:chatapp/features/ui/forgot_pass_page.dart';
+import 'package:chatapp/features/ui/main_bottom_nav.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:chatapp/features/ui/home_page.dart';
@@ -78,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                               ElevatedButton(
                                   onPressed: () {
                                     customNavigator(
-                                        context, const HomePage());
+                                        context, const MainBottomNav());
 
                                   }, child: const Text('Login')),
                             const SizedBox(height: 44),
